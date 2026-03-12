@@ -1,0 +1,6 @@
+Change search algoithms: A*, BFS, DFS
+Add buttons to GUI to configure parameters
+Change style and theme
+Make maze playable
+Make solver have various speed settings so a player can race the solver
+
