@@ -4,8 +4,8 @@ import cell
 import maze
 
 def main():
+    win = window.Window(500, 400, "gray")
     padding = 5
-    win = window.Window(500+padding, 400+padding)
     maz = maze.Maze(padding, padding, 10, 10, 25, 25, win)
     win.wait_for_close()
     return 0
