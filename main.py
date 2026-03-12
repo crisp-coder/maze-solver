@@ -1,10 +1,13 @@
 import window
 import graphics
+import cell
+import maze
 
 def main():
-    w = window.Window(500, 400)
-    w.draw_line(graphics.Line(graphics.Point(0, 0), graphics.Point(50, 50)), "green")
-    w.wait_for_close()
+    padding = 5
+    win = window.Window(500+padding, 400+padding)
+    maz = maze.Maze(padding, padding, 10, 10, 25, 25, win)
+    win.wait_for_close()
     return 0
 
 

@@ -2,27 +2,27 @@ from tkinter import Tk, BOTH, Canvas
 
 class Window():
     def __init__(self, width, height):
-        self.root = Tk()
-        self.root.title = 'MazeSolver'
-        self.height = height
-        self.width = width
-        self.canvas = Canvas(self.root, width=self.width, height=self.height, background='gray75')
-        self.canvas.pack(fill=BOTH, expand=1)
-        self.running = False
-        self.root.protocol('WM_DELETE_WINDOW', self.close)
+        self.__root = Tk()
+        self.__root.title('MazeSolver')
+        self.__height = height
+        self.__width = width
+        self.__canvas = Canvas(self.__root, width=self.__width, height=self.__height, background='gray75')
+        self.__canvas.pack(fill=BOTH, expand=1)
+        self.__running = False
+        self.__root.protocol('WM_DELETE_WINDOW', self.close)
 
     def redraw(self):
-        self.root.update_idletasks()
-        self.root.update()
+        self.__root.update_idletasks()
+        self.__root.update()
 
     def wait_for_close(self):
-        self.running = True
-        while self.running:
+        self.__running = True
+        while self.__running:
             self.redraw()
 
     def close(self):
-        self.running = False
+        self.__running = False
 
     def draw_line(self, line, color):
-        line.draw(self.canvas, color)
+        line.draw(self.__canvas, color)
 
