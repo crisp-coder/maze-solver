@@ -1,0 +1,9 @@
+padding=5
+win_width=640
+win_height=480
+win_background=#1f2973
+wall_color=#101114
+maze_rows=15
+maze_cols=21
+cell_size_x=30
+cell_size_y=30

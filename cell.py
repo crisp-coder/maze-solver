@@ -1,7 +1,7 @@
 import graphics
 
 class Cell:
-    def __init__(self, window=None):
+    def __init__(self, window=None, wall_color=None):
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
@@ -11,8 +11,16 @@ class Cell:
         self.__y1 = -1
         self.__y2 = -1
         self.__win = window
-        self.__wall_color_present = "blue"
-        self.__wall_color_absent = "gray"
+
+        if wall_color != None:
+            self.__wall_color_present = wall_color
+        else:
+            self.__wall_color_present = 'blue'
+
+        if self.__win != None:
+            self.__wall_color_absent = self.__win.background
+        else:
+            self.__wall_color_absent = 'gray'
 
     def draw(self, x1, y1, x2, y2):
         self.__x1 = x1
@@ -58,7 +66,7 @@ class Cell:
 
     def draw_move(self, to_cell, undo=False):
         if undo:
-            color = "gray"
+            color = self,__win.background
         else:
             color = "red"
 

@@ -1,15 +1,16 @@
-import window
-import graphics
-import cell
-import maze
+from window import Window
+from graphics import Point, Line
+from cell import Cell
+from maze import Maze
+from config import Config
 
 def main():
-    win = window.Window(500, 400, "gray")
-    padding = 5
-    maz = maze.Maze(padding, padding, 10, 10, 25, 25, win)
+    config = Config()
+    config.load("maze_options")
+    config_map = config.getMap()
+    win = Window(config_map['win_width'], config_map['win_height'], config_map['win_background'])
+    maz = Maze(config_map['padding'], config_map['padding'], config_map['maze_rows'], config_map['maze_cols'], config_map['cell_size_x'], config_map['cell_size_y'], win, config_map['wall_color'])
     win.wait_for_close()
-    return 0
-
 
 if __name__ == "__main__":
     main()
