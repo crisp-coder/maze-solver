@@ -9,7 +9,7 @@ def main():
     config.load("maze_options")
     config_map = config.getMap()
     win = Window(config_map['win_width'], config_map['win_height'], config_map['win_background'])
-    maz = Maze(config_map['padding'],
+    maze = Maze(config_map['padding'],
                config_map['padding'],
                config_map['maze_rows'],
                config_map['maze_cols'],
@@ -18,6 +18,7 @@ def main():
                config_map['wall_color'],
                win
                )
+    maze.solve()
     win.wait_for_close()
 
 if __name__ == "__main__":

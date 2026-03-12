@@ -9,5 +9,14 @@ class Tests(unittest.TestCase):
         self.assertEqual(len(m1._Maze__cells), num_cols)
         self.assertEqual(len(m1._Maze__cells[0]), num_rows)
 
+    def test_reset_visited(self):
+        num_cols = 12
+        num_rows = 10
+        m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        m1._Maze__reset_visited()
+        for r in range(len(cells)):
+            for c in range(len(r)):
+                self.assertEqual(False, c.visited)
+
 if __name__ == "main":
     unittest.main()
