@@ -15,6 +15,8 @@ def main():
                config_map['maze_cols'],
                config_map['cell_size_x'],
                config_map['cell_size_y'],
+               config_map['maze_gen_delay'],
+               config_map['maze_solve_delay'],
                config_map['wall_color'],
                win
                )

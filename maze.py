@@ -3,7 +3,7 @@ import time
 import random
 
 class Maze:
-    def __init__(self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, wall_color=None, win=None, seed=None):
+    def __init__(self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, maze_gen_delay=0.02, maze_solve_delay=0.02, wall_color=None, win=None, seed=None):
         self.__seed = seed
         if self.__seed != None:
             random.seed(seed)
@@ -13,6 +13,16 @@ class Maze:
         self.__num_cols = num_cols
         self.__cell_size_x = cell_size_x
         self.__cell_size_y = cell_size_y
+
+        if maze_gen_delay.isdigit():
+            self.__maze_gen_delay = float(maze_gen_delay)
+        else:
+            self.__maze_gen_delay = 0.02
+        if maze_solve_delay.isdigit():
+            self.__maze_solve_delay = float(maze_solve_delay)
+        else:
+            self.__maze_solve_delay = 0.02
+
         self.__win = win
         self.__wall_color = wall_color
         self.__cells = []
@@ -33,13 +43,14 @@ class Maze:
         y2 = (row+1)*self.__cell_size_y + self.__y1
         x2 = (col+1)*self.__cell_size_x + self.__x1
         self.__cells[row][col].draw(x1, y1, x2, y2)
-        self.__animate()
+        self.__animate(self.__maze_gen_delay)
 
-    def __animate(self):
+    def __animate(self, delay):
         if self.__win != None:
             self.__win.redraw()
 
-        time.sleep(0.002)
+        if delay > 0:
+            time.sleep(delay)
 
     def __break_entrance_and_exit(self):
         self.__break_wall(0,0, 'top')
@@ -100,7 +111,6 @@ class Maze:
                 self.__cells[row][col].visited = False
 
     def __solve_r(self, row, col):
-            self.__animate()
             self.__cells[row][col].visited = True
 
             if row == self.__num_rows-1 and col == self.__num_cols-1:
@@ -132,6 +142,7 @@ class Maze:
                 return False
             else:
                 for p in possible_cells:
+                    self.__animate(self.__maze_solve_delay)
                     self.__cells[row][col].draw_move(self.__cells[p[0]][p[1]], False)
                     if self.__solve_r(p[0], p[1]) == True:
                         return True
